@@ -113,6 +113,10 @@ img {
   height: auto;
 }
 
+svg {
+  max-width: 100%;
+}
+
 address {
   font-style: normal;
 }
@@ -383,6 +387,42 @@ address {
 }
 
 .team-social-icon {
+  fill: currentColor;
+}
+
+/* Customers */
+.customers-headline {
+  margin-bottom: 72px;
+}
+
+.customers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.customers-item {
+  flex-basis: calc((100% - 120px) / 6);
+}
+
+.customers-link {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  border: 1px solid var(--color-subtitle);
+  border-radius: 4px;
+  color: var(--color-subtitle);
+  transition: var(--transition-fast);
+  transition-property: border-color, color;
+}
+
+.customers-link:hover,
+.customers-link:focus {
+  border-color: var(--color-pressed);
+  color: var(--color-pressed);
+}
+
+.customers-icon {
   fill: currentColor;
 }
 
