@@ -41,6 +41,7 @@
   --color-dark-background: var(--grey);
   --color-light-background: var(--dairy);
   --color-white: var(--white);
+  --color-black: var(var(--black));
 }
 
 /* Main styles */
@@ -155,7 +156,7 @@ address {
 .btn-primary {
   padding: 16px 32px;
   border: none;
-  box-shadow: 0 4px 4px 0 rgba(var(--black), 0.15);
+  box-shadow: 0 4px 4px 0 rgba(var(--color-black), 0.15);
   background-color: var(--color-primary);
   color: var(--color-white);
   transition: background-color var(--transition-fast);
@@ -178,8 +179,9 @@ address {
 .btn-light:hover,
 .btn-light:focus {
   border-color: var(--color-pressed);
-  box-shadow: 0 2px 2px 0 rgba(var(--black), 0.12),
-    0 2px 1px 0 rgba(var(--black), 0.08), 0 3px 1px 0 rgba(var(--black), 0.1);
+  box-shadow: 0 2px 2px 0 rgba(var(--color-black), 0.12),
+    0 2px 1px 0 rgba(var(--color-black), 0.08),
+    0 3px 1px 0 rgba(var(--color-black), 0.1);
   background-color: var(--color-pressed);
   color: var(--color-white);
 }
@@ -192,6 +194,33 @@ address {
 
 .section {
   padding: 120px 0;
+}
+
+/* Social */
+.social-list {
+  display: flex;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  transition: background-color var(--transition-fast);
+}
+
+.social-link:hover,
+.social-link:focus {
+  background-color: var(--color-success);
+}
+
+.social-icon {
+  fill: currentColor;
 }
 
 /* Header */
@@ -264,9 +293,7 @@ address {
   color: var(--color-pressed);
 }
 
-.nav-link.active::after,
-.nav-link:hover::after,
-.nav-link:focus::after {
+.nav-link.active::after {
   opacity: 1;
 }
 
@@ -284,6 +311,8 @@ address {
 /* Hero Section */
 
 .hero {
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 188px 0;
   background: linear-gradient(
       to bottom,
@@ -363,22 +392,12 @@ address {
   text-align: center;
 }
 
-.team-social {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
+.team-text {
+  margin-bottom: 8px;
 }
 
-.team-social-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  color: var(--color-light);
-  transition: background-color var(--transition-fast);
+.team-social {
+  justify-content: space-between;
 }
 
 .team-social-link:hover,
@@ -386,14 +405,7 @@ address {
   background-color: var(--color-pressed);
 }
 
-.team-social-icon {
-  fill: currentColor;
-}
-
 /* Customers */
-.customers-headline {
-  margin-bottom: 72px;
-}
 
 .customers-list {
   display: flex;
@@ -452,22 +464,56 @@ address {
 .portfolio-link {
   display: block;
   background-color: var(--color-white);
+  transition: box-shadow var(--transition-fast);
 }
 
-.portfolio-link:hover {
+.portfolio-link:hover,
+.portfolio-link:focus {
   box-shadow: 0 2px 1px 0 rgba(var(--color-dark), 0.08),
     0 1px 1px 0 rgba(var(--color-dark), 0.16),
     0 1px 6px 0 rgba(var(--color-dark), 0.08);
 }
 
-.portfolio-link:hover .portfolio-info {
+.portfolio-link:hover .portfolio-info,
+.portfolio-link:focus .portfolio-info {
   border-color: var(--color-light);
+}
+
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
+  transform: none;
+  visibility: visible;
+}
+
+.portfolio-block {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+  padding: 40px 32px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  visibility: hidden;
+  transition: var(--transition-fast);
+  transition-property: transform, visibility;
 }
 
 .portfolio-info {
   padding: 32px 16px;
   border: 1px solid var(--color-accent);
   border-top: none;
+  transition: border-color var(--transition-fast);
 }
 
 .portfolio-title {
@@ -482,6 +528,15 @@ address {
 .footer {
   padding: 100px 0;
   background-color: rgb(var(--color-dark));
+}
+
+.footer-holder {
+  display: flex;
+  gap: 120px;
+}
+
+.footer-info {
+  max-width: 264px;
   color: var(--color-light);
 }
 
@@ -490,6 +545,85 @@ address {
 }
 
 .footer-text {
-  max-width: 264px;
   margin-top: 16px;
+}
+
+.footer-headline {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-white);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(var(--color-dark), 0.4);
+  transition: var(--transition-fast);
+  transition-property: visibility, opacity;
+  transition-delay: 0s;
+}
+
+.modal.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0.3s;
+}
+
+.modal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: calc(100% - 36px);
+  max-width: 408px;
+  max-height: calc(100vh - 36px);
+  padding: 72px 24px 24px;
+  border-radius: 4px;
+  box-shadow: 0 2px 1px 0 rgba(var(--color-black), 0.2),
+    0 1px 3px 0 rgba(0var (--black), 0.12),
+    0 1px 1px 0 rgba(var(--color-black), 0.14);
+  background-color: var(--color-light-background);
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.42, 0, 0.21, 1.5);
+  transition-property: transform, opacity;
+  transition-delay: 0.3s;
+}
+
+.modal.is-hidden .modal-window {
+  transform: translateX(-50%) translateY(-50%) scale(0.7);
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid rgba(var(--color-black), 0.1);
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-overlay);
+  transition: var(--transition-fast);
+  transition-property: border-color, background-color, color;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  border-color: var(--color-pressed);
+  background-color: var(--color-pressed);
+  color: var(--color-white);
+}
+
+.modal-close-icon {
+  fill: currentColor;
 }
